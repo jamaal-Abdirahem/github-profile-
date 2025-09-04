@@ -1,5 +1,5 @@
 import { Search } from "lucide-react";
-function Header() {
+function Header({ searchTerm, setSearchTerm, suggestions, onUserSelect }) {
   return (
     <div className="relative w-full ">
       <img
@@ -14,8 +14,30 @@ function Header() {
             type="text"
             placeholder="Search GitHub username"
             className="text-[18px] bg-transparent outline-none text-white w-full placeholder-gray-400"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
+        {suggestions.length > 0 && (
+          <div className="absolute top-[100px] left-0 right-0 flex justify-center">
+            <ul className="w-[400px] bg-[#111729] rounded-lg mt-1 shadow-lg max-h-80 overflow-y-auto">
+              {suggestions.map((user) => (
+                <li
+                  key={user.id}
+                  className="flex items-center px-4 py-3 cursor-pointer hover:bg-[#20293A] transition-colors"
+                  onClick={() => onUserSelect(user.login)}
+                >
+                  <img
+                    src={user.avatar_url}
+                    alt={user.login}
+                    className="w-8 h-8 rounded-full mr-3"
+                  />
+                  <span className="text-white">{user.login}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
