@@ -1,13 +1,22 @@
 import { Search } from "lucide-react";
 function Header({ searchTerm, setSearchTerm, suggestions, onUserSelect }) {
   return (
-    <div className="relative w-full ">
-      <img
-        src="images/hero-image-github-profile.jpg"
-        alt="background image for header"
-        className="w-full object-cover"
-      />
-      <div className="absolute inset-0 flex items-center justify-center h-[130px]">
+    <div className="relative w-full">
+      <picture>
+        {/* Desktop (>=1024px) */}
+        <source
+          media="(min-width: 1024px)"
+          srcSet="images/hero-image-github-profile.jpg"
+        />
+
+        {/* Mobile (default, <768px) */}
+        <img
+          src="images/hero-image-github-profile-sm.jpg"
+          alt="background image for header"
+          className="w-full object-cover h-[200px]"
+        />
+      </picture>
+      <div className="absolute inset-0 flex items-center justify-center h-[130px] z-100">
         <div className="flex items-center gap-2 bg-[#20293A] rounded-2xl px-4 py-3 w-[400px] shadow-lg">
           <Search className="text-white" />
           <input
@@ -24,7 +33,7 @@ function Header({ searchTerm, setSearchTerm, suggestions, onUserSelect }) {
               {suggestions.map((user) => (
                 <li
                   key={user.id}
-                  className="flex items-center px-4 py-3 cursor-pointer hover:bg-[#20293A] transition-colors"
+                  className="flex items-center px-4 py-3 cursor-pointer hover:bg-[#20293A] transition-colors z-10"
                   onClick={() => onUserSelect(user.login)}
                 >
                   <img

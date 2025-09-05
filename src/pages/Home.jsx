@@ -63,11 +63,11 @@ function Home() {
 
         {/* Home content fills the remaining space */}
         {selectedUser && (
-          <div className="flex flex-col text-white">
+          <div className=" text-white">
             {/* profile description */}
-            <div className="flex items-center ml-10 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-[35%_1fr] ml-10 gap-6">
               <div className="flex flex-col">
-                <div className="px-4 py-4 rounded-2xl bg-[#111729] text-white -mt-8 w-fit z-10">
+                <div className="px-4 py-4 rounded-2xl bg-[#111729] text-white -mt-8 w-fit z-10 ">
                   <img
                     src={selectedUser.avatar_url}
                     alt={selectedUser.login}
@@ -76,10 +76,11 @@ function Home() {
                 </div>
                 <div className="">
                   <h3 className="text-xl font-semibold">{selectedUser.name}</h3>
-                  <p className="text-gray-300">{selectedUser.bio}</p>
+                  <p className="text-gray-300 whitespace-pre-wrap break-words max-w-[30rem] leading-relaxed">
+                    {selectedUser.bio}
+                  </p>
                 </div>
               </div>
-
               {/* followers, following, location */}
               <div className="flex flex-wrap items-center gap-5">
                 <div className="flex  items-center bg-[#111729] px-5 py-3 rounded-md">

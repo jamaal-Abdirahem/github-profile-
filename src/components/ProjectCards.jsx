@@ -9,7 +9,9 @@ function ProjectCards({ repos }) {
           className="flex flex-col bg-gradient-to-r from-[#111729] to-[#1D1B48] px-4 py-7 rounded-2xl shadow-md gap-3"
         >
           <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
-            <h2 className="text-2xl text-white hover:underline">{repo.name}</h2>
+            <h2 className="text-2xl text-white hover:underline whitespace-pre-wrap break-words">
+              {repo.name}
+            </h2>
           </a>
           <p className="text-gray-400">
             {repo.description || "No description available."}
